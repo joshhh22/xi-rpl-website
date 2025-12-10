@@ -14,7 +14,7 @@ const router = express.Router();
 router.get('/', getStudents);
 router.get('/:id', getStudentById);
 
-// Protected (admin)
+// Admin (protected)
 router.post('/', protect, createStudent);
 router.put('/:id', protect, updateStudent);
 router.delete('/:id', protect, deleteStudent);
