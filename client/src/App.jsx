@@ -1,5 +1,6 @@
+// client/src/App.jsx
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -9,63 +10,26 @@ import Gallery from './pages/Gallery';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminStudents from './pages/admin/AdminStudents';
-import ProtectedRoute from './components/admin/ProtectedRoute';
+import AdminStructure from './pages/admin/AdminStructure';
 import AdminAchievements from './pages/admin/AdminAchievements';
 import AdminGallery from './pages/admin/AdminGallery';
-import AdminStructure from './pages/admin/AdminStructure';
+import ProtectedRoute from './components/admin/ProtectedRoute';
 
-
-
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
+    <Layout>
       <Routes>
-        {/* Public layout */}
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Layout>
-              <Profile />
-            </Layout>
-          }
-        />
-        <Route
-          path="/structure"
-          element={
-            <Layout>
-              <Structure />
-            </Layout>
-          }
-        />
-        <Route
-          path="/achievements"
-          element={
-            <Layout>
-              <Achievements />
-            </Layout>
-          }
-        />
-        <Route
-          path="/gallery"
-          element={
-            <Layout>
-              <Gallery />
-            </Layout>
-          }
-        />
+        {/* Public routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/structure" element={<Structure />} />
+        <Route path="/achievements" element={<Achievements />} />
+        <Route path="/gallery" element={<Gallery />} />
 
-        {/* Admin login */}
+        {/* Admin auth */}
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* Admin protected routes */}
+        {/* Admin protected */}
         <Route
           path="/admin"
           element={
@@ -79,6 +43,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <AdminStudents />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/structure"
+          element={
+            <ProtectedRoute>
+              <AdminStructure />
             </ProtectedRoute>
           }
         />
@@ -97,25 +69,10 @@ const App = () => {
               <AdminGallery />
             </ProtectedRoute>
           }
-
-          
-
         />
-
-        <Route
-          path="/admin/structure"
-          element={
-            <ProtectedRoute>
-              <AdminStructure />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </Layout>
   );
-};
+}
 
 export default App;
