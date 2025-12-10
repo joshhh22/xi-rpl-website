@@ -1,29 +1,17 @@
+// client/src/components/layout/Layout.jsx
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div className="flex min-h-screen bg-background text-text">
-      {/* Sidebar kiri */}
+    <div className="min-h-screen bg-background text-text flex">
       <Sidebar />
-
-      {/* Konten utama (geser karena sidebar md:ml-64) */}
-      <div className="flex flex-1 flex-col md:ml-64">
-        <Navbar />
-        <main className="flex-1 px-4 py-6 md:px-8">
-          {children}
-          <Footer />
-        </main>
-      </div>
+      <main className="flex-1 ml-0 md:ml-64 px-4 py-4 md:px-8 md:py-6">
+        <Outlet />
+      </main>
     </div>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
 };
 
 export default Layout;

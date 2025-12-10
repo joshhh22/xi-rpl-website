@@ -83,7 +83,7 @@ const AdminAchievements = () => {
   };
 
   return (
-    <AdminLayout>
+    
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-2">
           <div>
@@ -259,7 +259,7 @@ const AdminAchievements = () => {
           </form>
         </Modal>
       </div>
-    </AdminLayout>
+    
   );
 };
 
